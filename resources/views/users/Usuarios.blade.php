@@ -29,7 +29,9 @@
                 </td>
                         
 
-
+                <td>
+                    <a href="{{ route('logout') }}">CERRAR SESIÓN</a>
+                </td>
 
 
             </tr>
