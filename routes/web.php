@@ -14,7 +14,7 @@ Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.sesion');
 
 
-Route::middleware(['auth'])->group(function () {
+Route::middleware(['auth', 'account'])->group(function () {
     Route::get('/usuarios', [UsersController::class, 'index']);
     Route::post('/usuarios', [UsersController::class, 'store']);
     Route::post('/store', [UsersController::class, 'store']);
@@ -25,7 +25,7 @@ Route::middleware(['auth'])->group(function () {
    
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-
+Route::get('/users/active/account/{token}',[LoginController::class,'validateAccount']);
 
 
 

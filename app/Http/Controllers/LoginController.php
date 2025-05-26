@@ -47,8 +47,22 @@ public function logout(Request $request){
     }
  
         
+public function validateAccount($token)
+{
+$user = User::where('remember_token',$token)->first();
+if ($user && $user->remember_token == $token){
+$user->remember_token = null;
+$user->save();
+return redirect('/login')->with('success','Account confirmed successfully.');
+} else {
+return redirect('/login')->with('error','Invalid token.');
+}
 
-    
+}
+
+
+
+
 
 
 }

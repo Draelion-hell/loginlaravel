@@ -1,9 +1,10 @@
 <?php
 
 namespace App\Http\Controllers;
-
+use App\Notifications\UserNotification;
 use Illuminate\Http\Request;
 use App\Models\User;
+
 class UsersController extends Controller  
 {
     /**
@@ -34,13 +35,23 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
 
         ]);*/
+        $remenber_token = bin2hex(random_bytes(10));
 
         $user = new User();
         $user->name =$request->name;
         $user->email =$request->email;
         $user->password = bcrypt ($request->password);
+        
+
+        $user->remenber_token = $remenber_token;
+        
         $user-> save();
-        return redirect()->intended('/usuarios');
+
+        $user->notify(new UserNotification());
+
+
+        //return redirect()->intended('/usuarios');
+        return redirect()->back();
     }
 
     /**
