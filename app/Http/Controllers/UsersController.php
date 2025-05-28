@@ -35,7 +35,7 @@ class UsersController extends Controller
             'password' => bcrypt($request->password),
 
         ]);*/
-        $remenber_token = bin2hex(random_bytes(10));
+        $remember_token = bin2hex(random_bytes(10));
 
         $user = new User();
         $user->name =$request->name;
@@ -43,7 +43,7 @@ class UsersController extends Controller
         $user->password = bcrypt ($request->password);
         
 
-        $user->remenber_token = $remenber_token;
+        $user->remember_token = $remember_token;
         
         $user-> save();
 

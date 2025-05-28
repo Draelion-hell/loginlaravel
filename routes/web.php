@@ -13,11 +13,13 @@ Route::get('/', function () {
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login.sesion');
 
+Route::post('/usuarios', [UsersController::class, 'store']);
+Route::post('/store', [UsersController::class, 'store']);
+
 
 Route::middleware(['auth', 'account'])->group(function () {
     Route::get('/usuarios', [UsersController::class, 'index']);
-    Route::post('/usuarios', [UsersController::class, 'store']);
-    Route::post('/store', [UsersController::class, 'store']);
+    
     Route::get('/eliminar/usuario/{id}', [UsersController::class, 'destroy']);
     Route::get('/editar/usuario/{id}', [UsersController::class, 'edit']);
     Route::post('/actualizar/usuario/{id}', [UsersController::class, 'update']);
@@ -25,7 +27,9 @@ Route::middleware(['auth', 'account'])->group(function () {
    
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
+
 Route::get('/users/active/account/{token}',[LoginController::class,'validateAccount']);
+Route::resource('post',BlogController::class);
 
 
 

@@ -42,7 +42,7 @@ class UserNotification extends Notification
 
 {   return (new MailMessage)
     ->subject('Confirmación de cuenta')
-    ->view ('mail_notification_template',[
+    ->view ('users.mail_notification_template',[
         'user'=>$notifiable,
         "token"=>$notifiable->remember_token
     ]);
