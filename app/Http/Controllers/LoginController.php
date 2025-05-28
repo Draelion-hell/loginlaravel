@@ -13,7 +13,7 @@ class LoginController extends Controller
     
     
      public function index()
-    { auth::logout();
+    { //auth::logout();
          return view('login');
     }
 
@@ -30,7 +30,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
  
-            return redirect('/usuarios');
+            return redirect('/post');
         }
  
         return back()->withErrors([

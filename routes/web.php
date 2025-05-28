@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\UsersController;
 use App\Http\Controllers\LoginController;
+use App\Http\Controllers\BlogController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -23,13 +24,16 @@ Route::middleware(['auth', 'account'])->group(function () {
     Route::get('/eliminar/usuario/{id}', [UsersController::class, 'destroy']);
     Route::get('/editar/usuario/{id}', [UsersController::class, 'edit']);
     Route::post('/actualizar/usuario/{id}', [UsersController::class, 'update']);
-    
+    Route::resource('post',BlogController::class);
+    Route::get('/post/eliminar/{id}', [BlogController::class, 'destroy']);
+     
+
    
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
 
 Route::get('/users/active/account/{token}',[LoginController::class,'validateAccount']);
-Route::resource('post',BlogController::class);
+
 
 
 

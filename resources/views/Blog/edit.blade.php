@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Crear Block</title>
+  <title>Editar Blog</title>
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -60,19 +60,18 @@
 </head>
 <body>
   <div class="form-container">
-    <h1>Crear Block</h1>
-    <form action="/post" method="POST">
+    <h1>Editar Blog</h1>
+    <form action="{{route('post.update', $blog->id)}}" method="POST">
       @csrf
+      @method('PUT')
       <label for="title">Título:</label>
-      <input type="text" id="title" name="title" required>
+      <input type="text" id="title" name="title" required value="{{$blog->title}}">
 
       <label for="content">Contenido:</label>
-      <textarea id="content" name="content" rows="6" required></textarea>
+      <textarea id="content" name="content" rows="6" required>{{$blog->content}}</textarea>
 
       <button type="submit">Guardar</button>
     </form>
   </div>
 </body>
 </html>
-
-
