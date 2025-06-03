@@ -16,9 +16,10 @@ Route::post('/login', [LoginController::class, 'login'])->name('login.sesion');
 
 Route::post('/usuarios', [UsersController::class, 'store']);
 Route::post('/store', [UsersController::class, 'store']);
+Route::post("/user/register",[UsersController::class,"store"]);
 
 
-Route::middleware(['auth', 'account'])->group(function () {
+Route::middleware(['auth:api', 'account'])->group(function () {
     Route::get('/usuarios', [UsersController::class, 'index']);
     
     Route::get('/eliminar/usuario/{id}', [UsersController::class, 'destroy']);

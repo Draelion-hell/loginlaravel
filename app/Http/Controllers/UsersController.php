@@ -51,7 +51,9 @@ class UsersController extends Controller
 
 
         //return redirect()->intended('/usuarios');
-        return redirect()->back();
+        return response()->json([
+        'message'=>'Usuario creado correctamente, por favor revisa tu correo para activar tu cuenta.'],201);
+
     }
 
     /**
